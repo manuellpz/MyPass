@@ -1,10 +1,14 @@
-const SignIn = () => {
+const SignIn = ({ goPage }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <h1 className="signIn-title">Iniciar Sesión</h1>
       <div className="signIn-container">
         <i className="fa-solid fa-user icon-lg"></i>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             className="input"
@@ -29,7 +33,11 @@ const SignIn = () => {
         <hr />
         <div>
           <label style={{ color: "white" }}>Aún no tienes cuenta? </label>
-          <button className="btn" id="btn-create">
+          <button
+            className="btn"
+            id="btn-create"
+            onClick={() => goPage("register")}
+          >
             Crear Cuenta
           </button>
         </div>

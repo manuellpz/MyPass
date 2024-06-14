@@ -55,9 +55,19 @@ body {
       color:white;
     }
   }
+
+  .btn-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
   
   #btn-create {
     background:#0d6efd;
     color:white;
+  }
+  #btn-cancel {
+    background:#ffc107;
   }
 }
