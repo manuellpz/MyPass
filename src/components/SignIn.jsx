@@ -1,7 +1,40 @@
-const SignIn = ({ goPage }) => {
+import { useEffect } from "react";
+import { useState } from "react";
+
+let loginInitial = {
+  email: "",
+  pass: "",
+};
+
+const SignIn = ({ goPage, setUserData }) => {
+  const [users, setUsers] = useState([]);
+  const [form, setForm] = useState(loginInitial);
+
+  useEffect(() => {
+    fetch("http://localhost/MyPass/operations.php?getUsers")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let user = users.find(el => el.email === form.email && el.pass === form.pass)
+    
+    if(user) {
+      setUserData(user)
+      goPage("panel")
+    }
   };
+
+  const handleChange = (e) => {
+    setForm(
+      {
+        ...form,
+        [e.target.name] : e.target.value
+      }
+    )
+  }
 
   return (
     <div>
@@ -13,14 +46,19 @@ const SignIn = ({ goPage }) => {
             type="email"
             className="input"
             id="txt-email"
+            name="email"
             placeholder="Email: "
+            autoComplete="off"
+            onChange={handleChange}
             required
           />
           <input
             type="password"
             className="input"
             id="txt-pass"
+            name="pass"
             placeholder="Contraseña: "
+            onChange={handleChange}
             required
           />
           <input

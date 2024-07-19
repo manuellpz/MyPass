@@ -38,6 +38,7 @@ const UserRegistration = ({ goPage }) => {
     });
 
     setForm(initialForm);
+    goPage("login")
   };
 
   return (
@@ -54,6 +55,7 @@ const UserRegistration = ({ goPage }) => {
             value={form.name}
             placeholder="Nombre Usuario: "
             onChange={handleChange}
+            autoComplete="off"
             required
           />
           <input
@@ -64,6 +66,7 @@ const UserRegistration = ({ goPage }) => {
             value={form.email}
             placeholder="Email: "
             onChange={handleChange}
+            autoComplete="off"
             required
           />
           <input
@@ -74,6 +77,7 @@ const UserRegistration = ({ goPage }) => {
             value={form.pass}
             placeholder="Contraseña: "
             onChange={handleChange}
+            autoComplete="off"
             required
           />
           <div className="btn-group">

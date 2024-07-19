@@ -2,9 +2,11 @@ import { useState } from "react";
 import "./App.css";
 import SignIn from "./components/SignIn";
 import UserRegistration from "./components/UserRegistration";
+import UserPanel from "./components/UserPanel";
 
 function App() {
   const [page, setPage] = useState("login");
+  const [userData, setUserData] = useState("");
 
   const goPage = (pag) => {
     setPage(pag);
@@ -12,11 +14,11 @@ function App() {
 
   return (
     <div>
-      {page === "login" ? (
-        <SignIn goPage={goPage} />
-      ) : (
-        <UserRegistration goPage={goPage} />
-      )}
+      {page === "login" && <SignIn goPage={goPage} setUserData={setUserData} />}
+
+      {page === "register" && <UserRegistration goPage={goPage} />}
+
+      {page === "panel" && <UserPanel userData={userData} />}
     </div>
   );
 }
