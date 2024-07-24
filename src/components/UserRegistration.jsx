@@ -32,8 +32,8 @@ const UserRegistration = ({ goPage }) => {
     });
 
     Swal.fire({
-      title: "Agregado!",
-      text: "Agregado con exito!",
+      title: "Perfecto!",
+      text: "Nuevo usuario agregado!",
       icon: "success"
     });
 

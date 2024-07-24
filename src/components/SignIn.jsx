@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 let loginInitial = {
   email: "",
@@ -15,15 +15,21 @@ const SignIn = ({ goPage, setUserData }) => {
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [users]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let user = users.find(el => el.email === form.email && el.pass === form.pass)
     
     if(user) {
-      setUserData(user)
+      localStorage.setItem('logged-user',JSON.stringify(user));
       goPage("panel")
+    }else {
+      Swal.fire({
+        icon:"error",
+        title:"Lo sentimos",
+        text:"¡Correo y/o contrasena incorrectos!"
+      })
     }
   };
 
