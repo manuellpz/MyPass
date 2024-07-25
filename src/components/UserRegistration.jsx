@@ -45,7 +45,8 @@ const UserRegistration = ({ goPage }) => {
     <>
       <h1 className="signIn-title">Crear Cuenta</h1>
       <div className="signIn-container">
-        <h2 style={{ color: "white" }}>Datos</h2>
+        {/* <h2 style={{ color: "white" }}>Datos</h2> */}
+        <i className="fa-regular fa-id-card icon-lg"/>
         <form onSubmit={handleSubmit}>
           <input
             type="text"

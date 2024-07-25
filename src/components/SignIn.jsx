@@ -6,7 +6,7 @@ let loginInitial = {
   pass: "",
 };
 
-const SignIn = ({ goPage, setUserData }) => {
+const SignIn = ({ goPage }) => {
   const [users, setUsers] = useState([]);
   const [form, setForm] = useState(loginInitial);
 
