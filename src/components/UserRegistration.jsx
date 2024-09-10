@@ -43,7 +43,7 @@ const UserRegistration = ({ goPage }) => {
 
   return (
     <>
-      <h1 className="signIn-title">Crear Cuenta</h1>
+      <h1 className="title">Crear Cuenta</h1>
       <div className="signIn-container">
         {/* <h2 style={{ color: "white" }}>Datos</h2> */}
         <i className="fa-regular fa-id-card icon-lg"/>

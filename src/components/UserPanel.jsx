@@ -1,6 +1,12 @@
-const UserPanel = ({ goPage }) => {
+import { useState } from "react";
 
-  const userData = JSON.parse(localStorage.getItem('logged-user'));
+let initialForm = {
+  title: "",
+  account: "",
+};
+
+const UserPanel = ({ goPage }) => {
+  const userData = JSON.parse(localStorage.getItem("logged-user"));
 
   const { id, name, pass, email } = userData;
 
@@ -9,10 +15,54 @@ const UserPanel = ({ goPage }) => {
     goPage("login");
   };
 
+  const [form, setForm] = useState(initialForm);
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name] : e.target.value
+    })
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  }
+
   return (
-    <div>
-      <h1 className="signIn-title">Bienvenido {name}</h1>
-      <button onClick={logout}>Cerrar Sesión</button>
+    <div className="container-userPanel">
+      <h1 className="title">Bienvenido {name}</h1>
+      <hr />
+      <button onClick={logout} className="btn-logout">
+        <i className="fa-solid fa-door-open"></i>
+        <span>Cerrar Sesion</span>
+      </button>
+      <br />
+      <br />
+      <br />
+      <div className="container-form">
+        <h2 className="title">Nueva cuenta</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            id="txt-title"
+            name="title"
+            placeholder="Titulo: "
+            onChange={handleChange}
+            value={form.title}
+            required
+          />
+          <input
+            type="text"
+            id="txt-account"
+            name="account"
+            placeholder="Cuenta: "
+            onChange={handleChange}
+            value={form.account}
+            required
+          />
+          <input type="submit" id="btn-saveAccount" value="Agregar" />
+        </form>
+      </div>
     </div>
   );
 };

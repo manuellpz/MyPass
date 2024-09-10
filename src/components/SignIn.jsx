@@ -44,7 +44,7 @@ const SignIn = ({ goPage }) => {
 
   return (
     <div>
-      <h1 className="signIn-title">Iniciar Sesión</h1>
+      <h1 className="title">Iniciar Sesión</h1>
       <div className="signIn-container">
         <i className="fa-solid fa-user icon-lg"></i>
         <form onSubmit={handleSubmit}>
