@@ -20,13 +20,25 @@ const UserPanel = ({ goPage }) => {
   const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.name] : e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  }
+    let formData = new FormData();
+    formData.append("user_id", parseInt(id));
+    formData.append("title", form.title);
+    formData.append("content", form.account);
+
+    fetch("http://localhost/MyPass/operations.php?addAccount", {
+      method: "post",
+      body: formData,
+    })
+    .then(response => response.text())
+    .then(res => console.log(res))
+    .catch(error => console.log(error))
+  };
 
   return (
     <div className="container-userPanel">
