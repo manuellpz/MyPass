@@ -99,7 +99,6 @@ body {
 
 .container-form {
   width: 80vw;
-  /* border:1px solid white; */
   display: block;
   margin:0 auto;
   padding: 1rem;
@@ -126,3 +125,19 @@ body {
     }
   }
 }
+
+/* table {
+  color: black;
+  background: white;
+  padding: 1rem;
+  width: 80vw;
+  border: none;
+  border-radius: 5px;
+
+  tr {
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+} */

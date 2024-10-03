@@ -1,8 +1,10 @@
 import { useState } from "react";
+import UserAccounts from "./UserAccounts";
 
 let initialForm = {
   title: "",
-  account: "",
+  email: "",
+  pass: "",
 };
 
 const UserPanel = ({ goPage }) => {
@@ -29,15 +31,19 @@ const UserPanel = ({ goPage }) => {
     let formData = new FormData();
     formData.append("user_id", parseInt(id));
     formData.append("title", form.title);
-    formData.append("content", form.account);
+    formData.append("email", form.email);
+    formData.append("pass", form.pass);
 
     fetch("http://localhost/MyPass/operations.php?addAccount", {
       method: "post",
       body: formData,
     })
-    .then(response => response.text())
-    .then(res => console.log(res))
-    .catch(error => console.log(error))
+      .then((response) => response.text())
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+    
+    setForm(initialForm);
+
   };
 
   return (
@@ -64,17 +70,28 @@ const UserPanel = ({ goPage }) => {
             required
           />
           <input
-            type="text"
-            id="txt-account"
-            name="account"
+            type="email"
+            id="txt-email"
+            name="email"
             placeholder="Cuenta: "
             onChange={handleChange}
-            value={form.account}
+            value={form.email}
+            required
+          />
+          <input
+            type="text"
+            id="txt-pass"
+            name="pass"
+            placeholder="Contrasena: "
+            onChange={handleChange}
+            value={form.pass}
             required
           />
           <input type="submit" id="btn-saveAccount" value="Agregar" />
         </form>
       </div>
+      <hr />
+      <UserAccounts user_id={id}/>
     </div>
   );
 };
