@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 
-const UserAccounts = ({ user_id }) => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost/MyPass/operations.php?getAccounts=${user_id}`)
-      .then((response) => response.json())
-      .then((account_data) => {
-        setData(account_data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
+const UserAccounts = ({ data, deleteItem }) => {
   return (
-    <div className="container-table">
-      <table className="table table-responsive">
+    <div className="table-responsive-sm table-container">
+      <table className="table">
         <thead>
           <tr>
             <th>CUENTA</th>
@@ -24,21 +13,25 @@ const UserAccounts = ({ user_id }) => {
           </tr>
         </thead>
         <tbody>
-            {
-                data.map((el,index) => {
-                    const {title, email, pass} = el;
-                    return <tr key={index}>
-                            <td>{title}</td>
-                            <td>{email}</td>
-                            <td>{pass}</td>
-                            <td>
-                                <button className="btn">Edit</button>
-                                <button className="btn">X</button>
-                            </td>
-                        </tr>
-                    
-                })
-            }
+          {data.map((el, index) => {
+            const { account_id, title, email, pass } = el;
+            return (
+              <tr key={index}>
+                <td>{title}</td>
+                <td>{email}</td>
+                <td>{pass}</td>
+                <td className="btn-group btn-group-sm">
+                  <button className="btn btn-warning">Edit</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deleteItem(account_id)}
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

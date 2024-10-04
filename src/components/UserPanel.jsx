@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserAccounts from "./UserAccounts";
 
 let initialForm = {
@@ -18,6 +18,16 @@ const UserPanel = ({ goPage }) => {
   };
 
   const [form, setForm] = useState(initialForm);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost/MyPass/operations.php?getAccounts=${id}`)
+      .then((response) => response.json())
+      .then((account_data) => {
+        setData(account_data);
+      })
+      .catch((error) => console.error(error));
+  }, [data]);
 
   const handleChange = (e) => {
     setForm({
@@ -41,9 +51,12 @@ const UserPanel = ({ goPage }) => {
       .then((response) => response.text())
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
-    
-    setForm(initialForm);
 
+    setForm(initialForm);
+  };
+
+  const deleteItem = (account_id) => {
+    fetch(`http://localhost/MyPass/operations.php?delete=${account_id}`);
   };
 
   return (
@@ -91,7 +104,7 @@ const UserPanel = ({ goPage }) => {
         </form>
       </div>
       <hr />
-      <UserAccounts user_id={id}/>
+      <UserAccounts data={data} deleteItem={deleteItem} />
     </div>
   );
 };
