@@ -22,11 +22,12 @@ USE `gestor_password`;
 -- Volcando estructura para tabla gestor_password.accounts
 CREATE TABLE IF NOT EXISTS `accounts` (
   `account_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+  `user_id` bigint NOT NULL DEFAULT '0',
   `account_title` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `account_content` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `account_email` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `account_pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- La exportación de datos fue deseleccionada.
 
